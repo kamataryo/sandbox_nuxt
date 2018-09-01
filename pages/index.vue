@@ -5,9 +5,17 @@
       <h1 class="title">
         sandbox_view_auth0
       </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
+
+      <div v-if="isLoggedIn()" class="content">
+        <h2>ログインしています。</h2>
+        <nuxt-link class="button is-warning" to="/logout">logout</nuxt-link>
+      </div>
+
+      <div v-if="!isLoggedIn()" class="content">
+        <h2>ログインできます。</h2>
+        <nuxt-link class="button is-primary" to="/login">login</nuxt-link>
+      </div>
+
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -23,13 +31,18 @@
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import AppLogo from "~/components/AppLogo.vue";
 
 export default {
   components: {
     AppLogo
+  },
+  methods: {
+    isLoggedIn() {
+      return this.$auth0.isAuthenticated();
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -42,7 +55,8 @@ export default {
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: block;
   font-weight: 300;
   font-size: 100px;
@@ -62,4 +76,3 @@ export default {
   padding-top: 15px;
 }
 </style>
-

@@ -3,6 +3,11 @@ module.exports = {
   ** Headers of the page
   */
   mode: "spa",
+  plugins: ["~/plugins/auth0"],
+  auth0: {
+    domain: "sandbox-nuxt.auth0.com",
+    clientID: "RKIUPV8doMJs39VFjhnkXb4uxzpa_ZVQ"
+  },
   head: {
     title: "sandbox_view_auth0",
     meta: [
